@@ -12,6 +12,7 @@ module.exports = {
       //todo: 토큰만들기(access, refresh)
       //todo: 쿠키에 refresh토큰 담아서 보내주기
       res.status(200).send({
+        userId: user.userId,
         message: '로그인 성공', //todo: 액세스토큰 같이 넘겨주기
       });
     }

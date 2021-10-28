@@ -1,5 +1,5 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState } from 'react';
+import axios from 'axios';
 
 function Join() {
   /* 필요한 state : 아이디 input, 비밀번호 input */
@@ -14,17 +14,18 @@ function Join() {
     if (userInfo.userId && userInfo.password) {
       // userInfo의 userId와 password 둘 다 null이 아니라면 POST 요청 보내기!
       axios
-        .post("서버주소", userInfo)
-        .then(() => {
-          alert("회원가입 성공!!");
+        .post('https://localhost:4000/users/join', userInfo)
+        .then((data) => {
+          console.log(data);
+          alert('회원가입 성공!!');
         })
         .catch((err) => {
-          alert("회원가입 실패!!");
+          alert('회원가입 실패!!');
           console.log(err);
         });
     } else {
       // userInfo의 userId와 password 둘 중에 하나라도 null이면 "제대로 입력하세요ㅎㅎ" 보여주기
-      alert("제대로 입력하세요 ㅎㅎ");
+      alert('제대로 입력하세요 ㅎㅎ');
     }
   };
 
@@ -32,10 +33,10 @@ function Join() {
     // userId, password의 상태 변화 시켜주는 함수
     // console.log(e.target.value);
     // console.log(userInfo);
-    if (e.target.className === "id") {
+    if (e.target.className === 'id') {
       setUserInfo({ ...userInfo, userId: e.target.value });
     }
-    if (e.target.className === "pw") {
+    if (e.target.className === 'pw') {
       setUserInfo({ ...userInfo, password: e.target.value });
     }
     // console.log(userInfo);
@@ -50,7 +51,7 @@ function Join() {
       </label>
       <label>
         비밀번호
-        <input className="pw" type="text" onChange={handleUserInfo} />
+        <input className="pw" type="password" onChange={handleUserInfo} />
       </label>
       <button onClick={handleJoin}>회원 가입</button>
     </div>

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState } from 'react';
+import axios from 'axios';
 
 function Login({ handleLogin }) {
   // 상태
@@ -10,10 +10,10 @@ function Login({ handleLogin }) {
 
   const handleUserInfo = (e) => {
     // userId, password의 상태 변화 시켜주는 함수
-    if (e.target.className === "id") {
+    if (e.target.className === 'id') {
       setUserInfo({ ...userInfo, userId: e.target.value });
     }
-    if (e.target.className === "pw") {
+    if (e.target.className === 'pw') {
       setUserInfo({ ...userInfo, password: e.target.value });
     }
   };
@@ -21,12 +21,14 @@ function Login({ handleLogin }) {
   // 함수 POST 요청
   const loginRequest = () => {
     axios
-      .post("서버 주소", userInfo)
-      .then(() => {
+      .post('https://localhost:4000/users/login', userInfo)
+      .then((data) => {
+        // console.log(data);
+        alert(`${data.data.userId}님 반갑습니다!`);
         handleLogin();
       })
       .catch((err) => {
-        alert("아이디, 비밀번호를 다시 확인해주세요");
+        alert('아이디, 비밀번호를 다시 확인해주세요');
         console.log(err);
       });
   };
@@ -39,7 +41,7 @@ function Login({ handleLogin }) {
       </label>
       <label>
         비밀번호
-        <input className="pw" type="text" onChange={handleUserInfo} />
+        <input className="pw" type="password" onChange={handleUserInfo} />
       </label>
       <button onClick={loginRequest}>로그인</button>
     </div>

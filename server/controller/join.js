@@ -9,7 +9,7 @@ module.exports = {
     } else {
       res.status(200).send({
         message: '회원가입 성공',
-        data: newUser.userId,
+        joinUser: newUser.userId,
       });
     }
   },
