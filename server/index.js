@@ -27,6 +27,6 @@ if (fs.existsSync('./key.pem') && fs.existsSync('./cert.pem')) {
   server = https.createServer(credentials, app);
   server.listen(PORT, () => console.log('https가 실행됨'));
 } else {
-  server = app.listen(PORT, () => console.log('잘 실행되니?'));
+  server = app.listen(PORT, () => console.log('http가 실행됨'));
 }
 module.exports = server;

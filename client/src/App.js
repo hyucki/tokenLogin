@@ -1,7 +1,7 @@
-import Join from "./components/join";
-import Find from "./components/find";
-import Login from "./components/login";
-import { useState } from "react";
+import Join from './components/join';
+import Find from './components/find';
+import Login from './components/login';
+import { useState } from 'react';
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -11,7 +11,7 @@ function App() {
   };
   return (
     <div className="App">
-      <Join />
+      {!isLogin && <Join />}
       <h1>회원 목록</h1>
       {isLogin ? <Find /> : <Login handleLogin={handleLogin} />}
     </div>
