@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-function Login({ handleLogin }) {
+function Login({ handleLogin, handleAccessToken }) {
   // 상태
   const [userInfo, setUserInfo] = useState({
     userId: null,
@@ -21,11 +21,12 @@ function Login({ handleLogin }) {
   // 함수 POST 요청
   const loginRequest = () => {
     axios
-      .post('https://localhost:4000/users/login', userInfo)
+      .post('https://localhost:4000/users/login', userInfo, { withCredentials: true })
       .then((data) => {
-        // console.log(data);
+        // console.log(data.data.accessToken, '3');
         alert(`${data.data.userId}님 반갑습니다!`);
         handleLogin();
+        handleAccessToken(data.data.accessToken);
       })
       .catch((err) => {
         alert('아이디, 비밀번호를 다시 확인해주세요');
